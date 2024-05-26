@@ -48,7 +48,7 @@ const loginController = asyncHandler(async (req, res) => {
                     email:user.email,
                     id:user._id
                 }
-            },process.env.secretkey)
+            },process.env.SECRET_KEY)
             const data={
                 id:user._id,accessToken
             }

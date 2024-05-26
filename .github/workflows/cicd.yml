@@ -29,9 +29,6 @@ jobs:
       - name: Delete old container
         run: docker rm -f rental-backend-container  
       - name: Run Docker Container
-        run: docker run -d -t -i -p 4000:4000 --name rental-backend-container \
-            -e MONGO_PASSWORD="amaliflorus" \
-            -e SECRET_KEY="hello" \
-            genishprakash/rental-backend:latest
+        run: docker run -d -t -i -p 4000:4000 --name rental-backend-container -e MONGO_PASSWORD="amaliflorus" genishprakash/rental-backend:latest
       
     

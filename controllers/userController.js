@@ -34,7 +34,7 @@ const registerController = asyncHandler(async (req, res) => {
 const loginController = asyncHandler(async (req, res) => {
 
     const {email,password}=req.body
-
+    const secretkey=process.env.SECRET_KEY || "secretkey"
     if(!email || !password){
         res.status(400)
         throw new Error('Please fill the required fields')
@@ -48,7 +48,7 @@ const loginController = asyncHandler(async (req, res) => {
                     email:user.email,
                     id:user._id
                 }
-            },process.env.SECRET_KEY)
+            },secretkey)
             const data={
                 id:user._id,accessToken
             }

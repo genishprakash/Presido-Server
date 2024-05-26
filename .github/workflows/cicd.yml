@@ -28,10 +28,6 @@ jobs:
         run: docker pull genishprakash/rental-backend:latest 
       - name: Delete old container
         run: docker rm -f rental-backend-container  
-      - name: Print Environment Variables
-        run: |
-          echo Connection_String: ${{ secrets.CONNECTION_STRING }}
-          echo secretkey: ${{ secrets.SECRETKEY }}
       - name: Run Docker Container
         run: |
             docker run -d -p 4000:4000 --name rental-backend-container \

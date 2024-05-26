@@ -9,6 +9,10 @@ const PORT=process.env.PORT || 4000
 connectDb()
 app.use(express.json())
 
+app.get("/",(req,res)=>{
+    res.send("Hello World")
+})
+
 app.use("/api/users",require("./routes/users"))
 app.use("/api/property",require("./routes/property"))
 app.listen(PORT,()=>{

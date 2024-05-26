@@ -30,5 +30,9 @@ jobs:
       - name: Delete old container
         run: docker rm -f rental-backend-container  
       - name: Run Docker Container
-        run: docker run -d -p 4000:4000 --name rental-backend-container \ -e Connection_String=${{ secrets.CONNECTION_STRING }} \ -e secretkey=${{ secrets.SECRETKEY}} \genishprakash/todolist-backend
+        run: |
+            docker run -d -p 4000:4000 --name rental-backend-container \
+            -e Connection_String="${{ secrets.CONNECTION_STRING }}" \
+            -e secretkey="${{ secrets.SECRETKEY }}" \
+            genishprakash/rental-backend:latest
     

@@ -6,9 +6,8 @@ const asyncHandler = require('express-async-handler');
 
 
 const createProperty = asyncHandler(async (req, res) => {
-  const { title, description, price, location , bedrooms, bathrooms} = req.body;
-  const property = new Properties({ ...req.body, sellerId: req.user.userId });
-
+  const property = new Properties({ ...req.body});
+  console.log(property)
   try {
     await property.save();
     res.status(201).send(property);
@@ -18,24 +17,27 @@ const createProperty = asyncHandler(async (req, res) => {
 });
 
 const getProperties = asyncHandler(async  (req, res) => {
-  const properties = await Properties.find();
+  const properties = await Properties.find().populate('sellerId');
+  console.log('Properties:', properties);
   res.send(properties);
 });
 const getIdProperties = asyncHandler(async  (req, res) => {
-  const { id } = req.body.id;
+  const { id } = req.params;
+  
   try {
-    const properties = await Property.find({ sellerId: id });
+    const properties = await Properties.find({sellerId: id });
     res.send(properties);
   } catch (error) {
     res.status(500).send(error);
   }
 })
+
 const updateProperty = asyncHandler(async  (req, res) => {
   const { id } = req.params;
   const updates = req.body;
 
   try {
-    const property = await Properties.findOneAndUpdate({ _id: id, sellerId: req.user.userId }, updates, { new: true });
+    const property = await Properties.findOneAndUpdate({ _id: id }, updates, { new: true });
     res.send(property);
   } catch (error) {
     res.status(400).send(error);
@@ -46,7 +48,7 @@ const deleteProperty= asyncHandler(async  (req, res) => {
   const { id } = req.params;
 
   try {
-    await Properties.findOneAndDelete({ _id: id, sellerId: req.user.userId });
+    await Properties.findOneAndDelete({ _id: id});
     res.status(204).send();
   } catch (error) {
     res.status(400).send(error);

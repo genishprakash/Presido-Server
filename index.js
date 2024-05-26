@@ -14,7 +14,7 @@ app.get("/",(req,res)=>{
 })
 
 app.use("/api/users",require("./routes/users"))
-app.use("/api/property",require("./routes/property"))
+app.use("/api/properties",require("./routes/property"))
 app.listen(PORT,()=>{
     console.log(`Sever listening on port :${PORT}`)
 })

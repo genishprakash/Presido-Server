@@ -3,11 +3,12 @@ const {getProperties, createProperty,updateProperty,deleteProperty,getIdProperti
 
 const router = express.Router();
 
-router.post('/properties',createProperty)
-router.get('/properties',getProperties)
-router.get('/properties/:id',getIdProperties)
-router.put('/properties/:id',updateProperty)
-router.delete('/properties/:id',deleteProperty)
+router.post('/',createProperty)
+router.get('/',getProperties)
+router.get('/:id',getIdProperties)
+router.put('/:id',updateProperty)
+router.delete('/:id',deleteProperty)
+
 
 module.exports = router
 

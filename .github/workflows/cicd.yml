@@ -31,8 +31,8 @@ jobs:
         run: docker rm -f rental-backend-container  
       - name: Print Environment Variables
         run: |
-          echo "Connection_String: ${{ secrets.CONNECTION_STRING }}"
-          echo "secretkey: ${{ secrets.SECRETKEY }}"
+          echo Connection_String: ${{ secrets.CONNECTION_STRING }}
+          echo secretkey: ${{ secrets.SECRETKEY }}
 
       - name: Run Docker Container
         run: |

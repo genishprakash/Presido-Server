@@ -13,7 +13,6 @@ jobs:
         uses: actions/checkout@v4
       - name: Debug Secret Value
         run: "echo DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD}}"
-
       - name: Login to docker hub 
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{secrets.DOCKER_PASSWORD}}    
       - name: Build Docker Image
@@ -33,11 +32,10 @@ jobs:
         run: |
           echo Connection_String: ${{ secrets.CONNECTION_STRING }}
           echo secretkey: ${{ secrets.SECRETKEY }}
-
       - name: Run Docker Container
         run: |
             docker run -d -p 4000:4000 --name rental-backend-container \
-            -e Connection_String="${{ secrets.CONNECTION_STRING }}" \
-            -e secretkey="${{ secrets.SECRETKEY }}" \
+            -e Connection_String=${{ secrets.CONNECTION_STRING }} \
+            -e secretkey=${{ secrets.SECRETKEY }} \
             genishprakash/rental-backend:latest
     
